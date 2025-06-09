@@ -12,7 +12,7 @@ export default function Home() {
   const [wynik, setWynik] = useState('')
   const [loading, setLoading] = useState(false)
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => { 
     e.preventDefault()
     setLoading(true)
     setWynik('')
