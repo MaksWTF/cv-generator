@@ -47,7 +47,7 @@ if (data && data.choices && data.choices.length > 0 && data.choices[0].message) 
 
 return NextResponse.json({ wynik })
 
-    return NextResponse.json({ wynik })
+
   } catch (error) {
     console.error('[API] Błąd w API:', error)
     return NextResponse.json({ error: 'Coś poszło nie tak.' }, { status: 500 })
