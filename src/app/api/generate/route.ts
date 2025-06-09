@@ -35,9 +35,17 @@ CV i list mają być w języku polskim, styl formalny, dostosowany do pracy biur
     })
 
     const data = await response.json()
-    console.log('[API] Odpowiedź OpenRouter:', data)
+console.log('[API] Odpowiedź OpenRouter:', data)
 
-    const wynik = data.choices[0].message?.content || 'Brak odpowiedzi'
+let wynik = 'Brak odpowiedzi'
+
+if (data && data.choices && data.choices.length > 0 && data.choices[0].message) {
+  wynik = data.choices[0].message.content
+} else if (data.choices && data.choices.length > 0 && data.choices[0].text) {
+  wynik = data.choices[0].text
+}
+
+return NextResponse.json({ wynik })
 
     return NextResponse.json({ wynik })
   } catch (error) {
