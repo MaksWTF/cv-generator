@@ -50,17 +50,17 @@ export default function Home() {
 
         <label>
           Doświadczenie zawodowe:
-          <input type="text" value={doswiadczenie} onChange={(e) => setDoswiadczenie(e.target.value)} required />
+          <textarea value={doswiadczenie} onChange={(e) => setDoswiadczenie(e.target.value)} required />
         </label>
 
         <label>
           Umiejętności:
-          <input type="text" value={umiejetnosci} onChange={(e) => setUmiejetnosci(e.target.value)} required />
+          <textarea value={umiejetnosci} onChange={(e) => setUmiejetnosci(e.target.value)} required />
         </label>
 
         <label>
           Wykształcenie:
-          <input type="text" value={edukacja} onChange={(e) => setEdukacja(e.target.value)} required />
+          <textarea value={edukacja} onChange={(e) => setEdukacja(e.target.value)} required />
         </label>
 
         <label>
