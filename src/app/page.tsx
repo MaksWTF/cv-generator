@@ -1,7 +1,6 @@
 'use client'
 
 import { useState, FormEvent } from 'react'
-import { text } from 'stream/consumers'
 
 export default function Home() {
   const [imie, setImie] = useState('')
