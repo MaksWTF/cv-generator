@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, FormEvent } from 'react'
+import { text } from 'stream/consumers'
 
 export default function Home() {
   const [imie, setImie] = useState('')
@@ -49,7 +50,7 @@ export default function Home() {
 
         <label>
           Doświadczenie zawodowe:
-          <textarea value={doswiadczenie} onChange={(e) => setDoswiadczenie(e.target.value)} required />
+          <textarea type="text" value={doswiadczenie} onChange={(e) => setDoswiadczenie(e.target.value)} required />
         </label>
 
         <label>
