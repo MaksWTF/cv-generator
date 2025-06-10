@@ -3,7 +3,7 @@ body {
   margin: 0;
   padding: 0;
   font-family: 'Arial', sans-serif;
-  background: linear-gradient(135deg, #a8e063, #56ab2f); /* Limonkowy gradient */
+  background: linear-gradient(135deg, #7fe445, #3cc972); /* Limonkowy gradient */
   min-height: 100vh;
   display: flex;
   justify-content: center;
@@ -60,7 +60,7 @@ form textarea {
 
 /* Przycisk */
 button {
-  background-color: #a8e063; /* Limonkowy kolor */
+  background-color: #40cc7f; /* Limonkowy kolor */
   color: white;
   border: none;
   padding: 12px 24px;
