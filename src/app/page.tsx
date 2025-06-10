@@ -53,7 +53,7 @@ export default function Home() {
         <div className="info-box">
           <h2>Jak działamy?</h2>
           <p>
-            Wpisujesz swoje dane w formularzu poniżej, klikasz "Generuj", a my za pomocą AI w kilka sekund przygotowujemy dla Ciebie profesjonalne dokumenty aplikacyjne. 
+            Wpisz swoje dane w formularzu poniżej, klikasz "Generuj", a my za pomocą AI w kilka sekund przygotowujemy dla Ciebie profesjonalne dokumenty aplikacyjne. 
             Wszystko w przyjaznym, formalnym stylu i bez zbędnych ogólników.
           </p>
         </div>
