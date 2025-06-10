@@ -7,7 +7,7 @@
 }
 
 body {
-  background: linear-gradient(145deg, #222222, #222222);
+  background: linear-gradient(145deg, #1a1919, #1a1919);
   color: #f0f0f0;
   line-height: 1.6;
 }
@@ -21,7 +21,7 @@ body {
   justify-content: center;
   text-align: center;
   padding: 2rem;
-  background: linear-gradient(135deg, #101010, #1e1e1e);
+  background: linear-gradient(135deg, #1a1919, #1a1919);
 }
 
 .hero h1 {
