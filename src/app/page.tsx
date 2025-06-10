@@ -46,8 +46,9 @@ export default function Home() {
     <>
       {/* Sekcja powitalna */}
       <div className="hero">
-        <h1>Witamy w Generatorze CV!</h1>
-
+      <h1>Witamy w Generatorze CV!</h1>
+      <p></p>
+      <p></p>
         <div className="hero-cards">
           <div className="info-card">
             <h2>Czym jest generator CV?</h2>
