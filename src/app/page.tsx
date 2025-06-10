@@ -4,95 +4,114 @@ import { useRef, useState } from 'react'
 
 export default function Home() {
   const formRef = useRef<HTMLDivElement>(null)
-  const [imie, setImie] = useState('')
-  const [stanowisko, setStanowisko] = useState('')
-  const [doswiadczenie, setDoswiadczenie] = useState('')
-  const [umiejetnosci, setUmiejetnosci] = useState('')
-  const [edukacja, setEdukacja] = useState('')
-  const [kontakt, setKontakt] = useState('')
-  const [wynik, setWynik] = useState('Brak odpowiedzi')
+  const [formData, setFormData] = useState({
+    imie: '',
+    stanowisko: '',
+    doswiadczenie: '',
+    umiejetnosci: '',
+    edukacja: '',
+    kontakt: '',
+  })
   const [loading, setLoading] = useState(false)
+  const [wynik, setWynik] = useState('')
 
-  const handleScroll = () => {
-    formRef.current?.scrollIntoView({ behavior: 'smooth' })
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value })
   }
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setLoading(true)
 
-    const response = await fetch('/api/generate', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ imie, stanowisko, doswiadczenie, umiejetnosci, edukacja, kontakt })
-    })
+    try {
+      const res = await fetch('/api/generate', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      })
 
-    const data = await response.json()
-    setWynik(data.wynik || 'Brak odpowiedzi')
+      const data = await res.json()
+      setWynik(data.wynik)
+    } catch (err) {
+      setWynik('Wystąpił błąd przy generowaniu.')
+    }
+
     setLoading(false)
+  }
+
+  const scrollToForm = () => {
+    formRef.current?.scrollIntoView({ behavior: 'smooth' })
   }
 
   return (
     <>
-      {/* Sekcja powitalna */}
       <section className="intro-section">
-        <h1>Witaj na stronie generatora CV!</h1>
-        <p>
-          Dzięki naszemu generatorowi stworzysz profesjonalne CV oraz list motywacyjny w kilka sekund.
-          Wystarczy uzupełnić podstawowe dane, a my zajmiemy się resztą.
-        </p>
-
-        <div className="info-box">
-          <h2>Czym jest generator CV?</h2>
+        <div className="intro-content">
+          <h1>Witaj w Generatorze CV</h1>
           <p>
-            Generator CV to inteligentne narzędzie, które automatycznie tworzy CV oraz list motywacyjny na podstawie podanych przez Ciebie informacji. 
-            Dzięki niemu oszczędzasz czas i tworzysz dokumenty gotowe do wysłania pracodawcy.
+            Narzędzie do tworzenia profesjonalnego CV i listu motywacyjnego w kilka sekund!
+          </p>
+          <button className="scroll-button" onClick={scrollToForm}>
+            ↓ Wypróbuj
+          </button>
+        </div>
+      </section>
+
+      <section className="info-section">
+        <div className="info-box">
+          <h2>Czym jest &quot;Generator CV&quot;?</h2>
+          <p>
+            To aplikacja, która pozwala Ci wprowadzić swoje dane, a my zajmiemy się resztą.
+            Dzięki AI otrzymasz gotowe, profesjonalne CV i list motywacyjny w formalnym stylu.
           </p>
         </div>
-
         <div className="info-box">
           <h2>Jak działamy?</h2>
           <p>
-            Wpisz swoje dane w formularzu poniżej, klikasz "Generuj", a my za pomocą AI w kilka sekund przygotowujemy dla Ciebie profesjonalne dokumenty aplikacyjne. 
-            Wszystko w przyjaznym, formalnym stylu i bez zbędnych ogólników.
+            Wystarczy, że wpiszesz swoje dane w formularzu poniżej, klikniesz &quot;Generuj&quot;,
+            a po chwili za pomocą AI zobaczysz komplet dokumentów gotowych do wykorzystania.
           </p>
         </div>
-
-        <button className="scroll-button" onClick={handleScroll}>Wypróbuj ⬇️</button>
       </section>
 
-      {/* Sekcja formularza */}
       <div className="container" ref={formRef}>
-        <h1>Generator CV i Listu Motywacyjnego</h1>
+        <h2>Generator CV i Listu Motywacyjnego</h2>
         <form onSubmit={handleSubmit}>
           <label>
             Imię i nazwisko:
-            <input type="text" value={imie} onChange={e => setImie(e.target.value)} required />
+            <input type="text" name="imie" value={formData.imie} onChange={handleChange} required />
           </label>
           <label>
             Stanowisko docelowe:
-            <input type="text" value={stanowisko} onChange={e => setStanowisko(e.target.value)} required />
+            <input type="text" name="stanowisko" value={formData.stanowisko} onChange={handleChange} required />
           </label>
           <label>
             Doświadczenie zawodowe:
-            <textarea value={doswiadczenie} onChange={e => setDoswiadczenie(e.target.value)} required />
+            <textarea name="doswiadczenie" value={formData.doswiadczenie} onChange={handleChange} required />
           </label>
           <label>
             Umiejętności:
-            <textarea value={umiejetnosci} onChange={e => setUmiejetnosci(e.target.value)} required />
+            <textarea name="umiejetnosci" value={formData.umiejetnosci} onChange={handleChange} required />
           </label>
           <label>
             Wykształcenie:
-            <textarea value={edukacja} onChange={e => setEdukacja(e.target.value)} required />
+            <textarea name="edukacja" value={formData.edukacja} onChange={handleChange} required />
           </label>
           <label>
             Dane kontaktowe:
-            <input type="text" value={kontakt} onChange={e => setKontakt(e.target.value)} required />
+            <input type="text" name="kontakt" value={formData.kontakt} onChange={handleChange} required />
           </label>
-          <button type="submit">{loading ? 'Generowanie...' : 'Generuj'}</button>
+          <button type="submit" disabled={loading}>
+            {loading ? 'Generuję...' : 'Generuj'}
+          </button>
         </form>
 
-        <div className="result">{wynik}</div>
+        {wynik && (
+          <div className="result">
+            <h3>Wynik:</h3>
+            <pre>{wynik}</pre>
+          </div>
+        )}
       </div>
     </>
   )
