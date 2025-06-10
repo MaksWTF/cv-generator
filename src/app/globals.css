@@ -14,7 +14,7 @@ body {
 
 /* Sekcja powitalna */
 .hero {
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -26,13 +26,40 @@ body {
 
 .hero h1 {
   font-size: 3rem;
-  margin-bottom: 1rem;
+  margin-bottom: 2rem;
   color: #d4ff3d;
 }
 
 .hero p {
   font-size: 1.2rem;
   margin-bottom: 2rem;
+  color: #ccc;
+}
+
+.hero-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  width: 100%;
+  max-width: 700px;
+}
+
+.info-card {
+  background-color: #1e1e1e;
+  padding: 1.5rem;
+  border-radius: 12px;
+  border: 1px solid #2a2a2a;
+  box-shadow: 0 0 10px rgba(0, 255, 0, 0.05);
+}
+
+.info-card h2 {
+  font-size: 1.5rem;
+  margin-bottom: 0.8rem;
+  color: #d4ff3d;
+}
+
+.info-card p {
   color: #ccc;
 }
 
@@ -49,36 +76,6 @@ body {
 
 .scroll-button:hover {
   background-color: #b3e634;
-}
-
-/* Sekcja informacyjna */
-.info-section {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 2rem;
-  padding: 4rem 2rem;
-  background-color: #151515;
-}
-
-.info-card {
-  background-color: #1e1e1e;
-  padding: 2rem;
-  border-radius: 12px;
-  max-width: 700px;
-  width: 100%;
-  border: 1px solid #2a2a2a;
-  box-shadow: 0 0 10px rgba(0, 255, 0, 0.05);
-}
-
-.info-card h2 {
-  font-size: 1.5rem;
-  margin-bottom: 1rem;
-  color: #d4ff3d;
-}
-
-.info-card p {
-  color: #ccc;
 }
 
 /* Formularz główny */

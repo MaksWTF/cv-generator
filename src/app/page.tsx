@@ -4,91 +4,99 @@ import { useRef, useState } from 'react'
 
 export default function Home() {
   const formRef = useRef<HTMLDivElement>(null)
-  const [imie, setImie] = useState('')
-  const [stanowisko, setStanowisko] = useState('')
-  const [doswiadczenie, setDoswiadczenie] = useState('')
-  const [umiejetnosci, setUmiejetnosci] = useState('')
-  const [edukacja, setEdukacja] = useState('')
-  const [kontakt, setKontakt] = useState('')
-  const [wynik, setWynik] = useState('Brak odpowiedzi')
-  const [generuje, setGeneruje] = useState(false)
+  const [formData, setFormData] = useState({
+    imie: '',
+    stanowisko: '',
+    doswiadczenie: '',
+    umiejetnosci: '',
+    edukacja: '',
+    kontakt: ''
+  })
+  const [result, setResult] = useState('')
 
   const scrollToForm = () => {
     formRef.current?.scrollIntoView({ behavior: 'smooth' })
   }
 
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value
+    })
+  }
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    setGeneruje(true)
 
     try {
       const response = await fetch('/api/generate', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ imie, stanowisko, doswiadczenie, umiejetnosci, edukacja, kontakt })
+        body: JSON.stringify(formData)
       })
 
       const data = await response.json()
-      setWynik(data.wynik)
+      setResult(data.wynik || 'Brak odpowiedzi')
     } catch {
-      setWynik('Wystąpił błąd przy generowaniu.')
-    } finally {
-      setGeneruje(false)
+      setResult('Wystąpił błąd podczas generowania.')
     }
   }
 
   return (
-    <div>
+    <>
       {/* Sekcja powitalna */}
       <div className="hero">
-        <h1>Witamy w Generatorze CV</h1>
-        <p>Profesjonalne CV i list motywacyjny w kilka sekund!</p>
-        <button onClick={scrollToForm} className="scroll-button">Wypróbuj ↓</button>
+        <h1>Witamy w Generatorze CV!</h1>
+
+        <div className="hero-cards">
+          <div className="info-card">
+            <h2>Czym jest generator CV?</h2>
+            <p>To narzędzie, które automatycznie stworzy profesjonalne CV oraz list motywacyjny na podstawie podanych przez Ciebie danych. Szybko, wygodnie i bez stresu!</p>
+          </div>
+          <div className="info-card">
+            <h2>Jak działamy?</h2>
+            <p>Wystarczy, że uzupełnisz formularz, a nasz system wygeneruje gotowe dokumenty w kilka sekund.</p>
+          </div>
+        </div>
+
+        <button className="scroll-button" onClick={scrollToForm}>Wypróbuj</button>
       </div>
 
-      {/* Sekcja informacyjna */}
-      <div className="info-section">
-        <div className="info-card">
-          <h2>Czym jest generator CV?</h2>
-          <p>To proste narzędzie, które pomoże Ci stworzyć profesjonalne CV oraz list motywacyjny w zaledwie kilka chwil.</p>
-        </div>
-        <div className="info-card">
-          <h2>Jak działamy?</h2>
-          <p>Podajesz nam kilka podstawowych informacji, a my generujemy gotowe dokumenty, które możesz od razu wykorzystać.</p>
-        </div>
-      </div>
-
-      {/* Generator */}
+      {/* Formularz */}
       <div className="container" ref={formRef}>
         <h1>Generator CV i Listu Motywacyjnego</h1>
         <form onSubmit={handleSubmit}>
-          <label>Imię i nazwisko:
-            <input type="text" value={imie} onChange={(e) => setImie(e.target.value)} required />
+          <label>
+            Imię i nazwisko:
+            <input type="text" name="imie" value={formData.imie} onChange={handleChange} required />
           </label>
-          <label>Stanowisko docelowe:
-            <input type="text" value={stanowisko} onChange={(e) => setStanowisko(e.target.value)} required />
+          <label>
+            Stanowisko docelowe:
+            <input type="text" name="stanowisko" value={formData.stanowisko} onChange={handleChange} required />
           </label>
-          <label>Doświadczenie zawodowe:
-            <textarea value={doswiadczenie} onChange={(e) => setDoswiadczenie(e.target.value)} required />
+          <label>
+            Doświadczenie zawodowe:
+            <textarea name="doswiadczenie" value={formData.doswiadczenie} onChange={handleChange} required />
           </label>
-          <label>Umiejętności:
-            <textarea value={umiejetnosci} onChange={(e) => setUmiejetnosci(e.target.value)} required />
+          <label>
+            Umiejętności:
+            <textarea name="umiejetnosci" value={formData.umiejetnosci} onChange={handleChange} required />
           </label>
-          <label>Wykształcenie:
-            <textarea value={edukacja} onChange={(e) => setEdukacja(e.target.value)} required />
+          <label>
+            Wykształcenie:
+            <textarea name="edukacja" value={formData.edukacja} onChange={handleChange} required />
           </label>
-          <label>Dane kontaktowe:
-            <input type="text" value={kontakt} onChange={(e) => setKontakt(e.target.value)} required />
+          <label>
+            Dane kontaktowe:
+            <input type="text" name="kontakt" value={formData.kontakt} onChange={handleChange} required />
           </label>
-          <button type="submit" disabled={generuje}>
-            {generuje ? 'Generowanie...' : 'Generuj'}
-          </button>
+          <button type="submit">Generuj</button>
         </form>
 
         <div className="result">
-          {wynik}
+          {result}
         </div>
       </div>
-    </div>
+    </>
   )
 }
