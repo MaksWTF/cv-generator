@@ -55,7 +55,7 @@ export default function Home() {
           </div>
           <div className="info-card">
             <h2>Jak działamy?</h2>
-            <p>Wystarczy, że uzupełnisz formularz, a nasz system wygeneruje gotowe dokumenty w kilka sekund. Im więcej informacji wpiszesz w formularzu, tym lepszy uzyskasz wynik</p>
+            <p>Wystarczy, że uzupełnisz formularz, a nasz system wygeneruje gotowe dokumenty w kilka sekund. Im więcej informacji wpiszesz w formularzu, tym lepszy uzyskasz wynik!</p>
           </div>
         </div>
 
