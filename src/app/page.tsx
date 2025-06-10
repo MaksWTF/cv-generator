@@ -32,9 +32,9 @@ export default function Home() {
 
       const data = await res.json()
       setWynik(data.wynik)
-    } catch (err) {
+    } catch {
       setWynik('Wystąpił błąd przy generowaniu.')
-    }
+    }    
 
     setLoading(false)
   }
