@@ -3,80 +3,81 @@ body {
   margin: 0;
   padding: 0;
   font-family: 'Arial', sans-serif;
-  background-color: #121212;
-  color: #f5f5f5;
+  background: linear-gradient(135deg, #4a90e2, #9013fe);
   min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
+h1 {
+  color: white;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
 /* Kontener */
 .container {
-  max-width: 700px;
-  background-color: #1e1e1e;
-  padding: 40px;
-  border-radius: 16px;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+  background-color: white;
+  padding: 30px 40px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  width: 90%;
+  max-width: 600px;
 }
 
-/* Nagłówek */
-h1 {
-  text-align: center;
-  margin-bottom: 30px;
-  font-size: 32px;
-  color: #00ffcc;
+/* Formularz */
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-/* Etykiety i inputy */
 form label {
-  display: block;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
   margin-bottom: 15px;
   font-weight: bold;
 }
 
 form input,
 form textarea {
-  width: 100%;
+  width: 80%;
+  max-width: 500px;
   padding: 10px;
   margin-top: 5px;
-  border: none;
-  border-radius: 8px;
-  background-color: #2c2c2c;
-  color: #f5f5f5;
+  border: 1px solid #ccc;
+  border-radius: 6px;
   font-family: 'Arial', sans-serif;
   font-size: 16px;
 }
 
-form textarea {
-  resize: vertical;
-  min-height: 80px;
-}
-
 /* Przycisk */
 button {
-  display: block;
-  width: 100%;
-  padding: 12px;
-  margin-top: 20px;
-  background-color: #00ffcc;
-  color: #121212;
+  background-color: #4a90e2;
+  color: white;
   border: none;
-  border-radius: 8px;
-  font-size: 18px;
+  padding: 12px 24px;
+  border-radius: 6px;
   cursor: pointer;
+  font-size: 16px;
   transition: background-color 0.3s ease;
+  margin-top: 15px;
 }
 
 button:hover {
-  background-color: #00ddb3;
+  background-color: #357abd;
 }
 
 /* Wynik */
 .result {
-  margin-top: 30px;
-  padding: 20px;
-  background-color: #2c2c2c;
-  border-radius: 8px;
+  margin-top: 20px;
+  background-color: #f5f5f5;
+  padding: 15px;
+  border-radius: 6px;
   white-space: pre-wrap;
+  word-wrap: break-word;
+  font-family: 'Arial', sans-serif;
 }
