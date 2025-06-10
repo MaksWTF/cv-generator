@@ -3,13 +3,14 @@ body {
   margin: 0;
   padding: 0;
   font-family: 'Arial', sans-serif;
-  background: linear-gradient(135deg, #4a90e2, #9013fe);
+  background: linear-gradient(135deg, #a8e063, #56ab2f); /* Limonkowy gradient */
   min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
+/* Tytuł */
 h1 {
   color: white;
   text-align: center;
@@ -24,6 +25,9 @@ h1 {
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
   width: 90%;
   max-width: 600px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 /* Formularz */
@@ -31,21 +35,21 @@ form {
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 100%;
 }
 
 form label {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  width: 100%;
+  align-items: flex-start;
+  width: 80%;
   margin-bottom: 15px;
   font-weight: bold;
 }
 
 form input,
 form textarea {
-  width: 80%;
-  max-width: 500px;
+  width: 100%;
   padding: 10px;
   margin-top: 5px;
   border: 1px solid #ccc;
@@ -56,7 +60,7 @@ form textarea {
 
 /* Przycisk */
 button {
-  background-color: #4a90e2;
+  background-color: #a8e063; /* Limonkowy kolor */
   color: white;
   border: none;
   padding: 12px 24px;
@@ -68,13 +72,13 @@ button {
 }
 
 button:hover {
-  background-color: #357abd;
+  background-color: #8bc34a; /* Ciemniejszy limonkowy po najechaniu */
 }
 
 /* Wynik */
 .result {
   margin-top: 20px;
-  background-color: #f5f5f5;
+  background-color: #fafafa;
   padding: 15px;
   border-radius: 6px;
   white-space: pre-wrap;
